@@ -1,34 +1,39 @@
 var bg;
 var player;
+var player_sadimg;
+var player_happyimg
 var c02 =[];
 var score = 0
+var life = 2
 var o2=[]
 var so2 = [];
 //var gases = [];
+var s2;
 
 
 function preload(){
 bg = loadImage("images/bg1.png");
+player_sadimg = loadAnimation("images/e0.png","images/e1.png","images/e2.png","images/e3.png","images/e4.png");
+player_happyimg = loadAnimation("images/he0.png","images/he1.png","images/he2.png");
+s2 = loadSound("images/s2.mp3");
 }
 
 
 function setup(){
 canvas = createCanvas(displayWidth-20,displayHeight-30);
-player = new Player(displayWidth/2-400,displayHeight/2+150,250,280);
+player = createSprite(500,500,150,160);
+player.scale =  2
+player.addAnimation("sadimg",player_sadimg);
+player.addAnimation("happyimg",player_happyimg);
 }
 
 function draw(){
 // if(gameState === ) 
 background(bg);
-player.display();
 
-if(keyDown(LEFT_ARROW)){
-player.move(-6,0)    
-}
+player.x =mouseX;
+player.y = mouseY;
 
-if(keyDown(RIGHT_ARROW)){
-    player.move(8,0)    
-    }
     //so2 is starting ;;
 if(frameCount % 50 === 0){
     gas = new Gas3(random(width),-10,110,120);
@@ -77,16 +82,21 @@ if(frameCount % 50 === 0){
        // console.log("player")
        o2.splice(k,1);
        score = score + 1
+       s2.play();
     }
    }
-   if(score === 1){
-    player.visible = false
-    player.happyDisplay();
-  
+   if(score === 3){
+   player.changeAnimation("happyimg",player_happyimg);
+   player.scale = 2
    }
 
    fill(0);
    textSize(50)
 text("Score : "+score,displayWidth/2-625,displayHeight/2-325);
  
+fill(0);
+textSize(50)
+text("Life : "+ life,displayWidth/2+25,displayHeight/2-325);
+
+drawSprites();
 }
