@@ -243,141 +243,129 @@ if(life ===6){
          h4.visible = false
       }
 
+
+if(life === 0 || mode === 2){
+  level2();
+  background(bg3)
+}
+
 drawSprites();
-}
-if(score === 15 || life === 0){
-   mode = 2
-     clear()
-     background(bg2)
- 
-  }
 
-  
-  if(mode === 2){
-   clear()
- background(bg3);
- score = 0
- life = 10
-h1.visible = true;
-h2.visible = true;
-h3.visible = true;
-h4.visible = true;
-
-player.addAnimation("sadimg",player_sadimg);
-player.addAnimation("happyimg",player_happyimg);
-
- 
-if(keyWentDown(RIGHT_ARROW)){
- player.velocityX = 5
-}
-if(keyWentUp(RIGHT_ARROW)){
- player.velocityX = 0
 }
 
-if(keyWentDown(LEFT_ARROW)){
- player.velocityX = -6
-}
-
-if(keyWentUp(LEFT_ARROW)){
- player.velocityX = 0
-}
-
-     //so2 is starting ;;
- if(frameCount % 50 === 0){
-     gas = new Gas3(random(width),-10,110,120);
-     //gases.push(gas)
-    so2.push(gas)
- }
- 
- 
-     for(var i= 0;i<so2.length;i++){
-       so2[i].display();
-        so2[i].moveGas3(0,26);
- 
-      if(so2[i].hit3(player)){
-       // console.log("player")
-       so2.splice(i,1)
-       life = life-1
-       s3.play();
-     }
+  function level2(){
+    life = 10
+   h1.visible = true;
+   h2.visible = true;
+   h3.visible = true;
+   h4.visible = true;
+   
+ //  player.addAnimation("sadimg",player_sadimg);
+   //player.addAnimation("happyimg",player_happyimg);
+   
+    
+   if(keyWentDown(RIGHT_ARROW)){
+    player.velocityX = 5
+   }
+   if(keyWentUp(RIGHT_ARROW)){
+    player.velocityX = 0
+   }
+   
+   if(keyWentDown(LEFT_ARROW)){
+    player.velocityX = -6
+   }
+   
+   if(keyWentUp(LEFT_ARROW)){
+    player.velocityX = 0
+   }
+   
+        //so2 is starting ;;
+    if(frameCount % 50 === 0){
+        gas = new Gas3(random(width),-10,110,120);
+        //gases.push(gas)
+       so2.push(gas)
     }
-    //co2 is starting;;;
-    if(frameCount % 40 === 0){
-     gas2 = new Gas2(random(width),-10,110,120);
-     c02.push(gas2)
- }
- 
- 
-    for(var j= 0;j<c02.length;j++){
-        c02[j].display();
-        c02[j].moveGas2(0,25)
- 
-        if(c02[j].hit2(player)){
-        // console.log("player")
-        c02.splice(j,1);
-        life = life-2
- s3.play();
-     }
+    
+    
+        for(var i= 0;i<so2.length;i++){
+          so2[i].display();
+           so2[i].moveGas3(0,26);
+    
+         if(so2[i].hit3(player)){
+          // console.log("player")
+          so2.splice(i,1)
+          life = life-1
+          s3.play();
+        }
+       }
+       //co2 is starting;;;
+       if(frameCount % 40 === 0){
+        gas2 = new Gas2(random(width),-10,110,120);
+        c02.push(gas2)
     }
-    //o2 is starting;;;;
-    if(frameCount % 30 === 0){
-     gas3 = new Gas(random(width),-10,110,120);
-     o2.push(gas3)
- }
- 
- 
-    for(var k= 0;k<o2.length;k++){
-       o2[k].display();
-     o2[k].moveGas(0,27)
- 
-        if(o2[k].hit(player)){
-        // console.log("player")
-        o2.splice(k,1);
-        score = score + 1
-        s2.play();
-     }
+    
+    
+       for(var j= 0;j<c02.length;j++){
+           c02[j].display();
+           c02[j].moveGas2(0,25)
+    
+           if(c02[j].hit2(player)){
+           // console.log("player")
+           c02.splice(j,1);
+           life = life-2
+    s3.play();
+        }
+       }
+       //o2 is starting;;;;
+       if(frameCount % 30 === 0){
+        gas3 = new Gas(random(width),-10,110,120);
+        o2.push(gas3)
     }
-    if(score === 2){
-    player.changeAnimation("happyimg",player_happyimg);
-    player.scale = 2
-    }
-      
+    
+    
+       for(var k= 0;k<o2.length;k++){
+          o2[k].display();
+        o2[k].moveGas(0,27)
+    
+           if(o2[k].hit(player)){
+           // console.log("player")
+           o2.splice(k,1);
+           score = score + 1
+           s2.play();
+        }
+       }
+       if(score === 2){
+       player.changeAnimation("happyimg",player_happyimg);
+       player.scale = 2
+       }
+         
+       fill(0);
+       textSize(50)
+    text("Score : "+score,displayWidth/2-625,displayHeight/2-325);
+     
     fill(0);
     textSize(50)
- text("Score : "+score,displayWidth/2-625,displayHeight/2-325);
-  
- fill(0);
- textSize(50)
- text("Life :",displayWidth/2+25,displayHeight/2-325);
- 
- if(life === 8){
- h1.visible = false
- }
- 
- if(life ===6){
-    h2.visible = false
+    text("Life :",displayWidth/2+25,displayHeight/2-325);
+    
+    if(life === 8){
+    h1.visible = false
     }
-    if(life ===4){
-       h3.visible = false
+    
+    if(life ===6){
+       h2.visible = false
        }
-     
-       if(life ===2){
-          h4.visible = false
-       }
-       drawSprites();
+       if(life ===4){
+          h3.visible = false
+          }
+        
+          if(life ===2){
+             h4.visible = false
+          }
+  
+   
   }
-
-//if(life === 0){
-//mode = 3
-//clear()
-//background(bg2)
-//}
-
-    if(life === 0){
-      mode = 3
-      clear()
-      background(bg2)
-      }
+  
+    
 }
 function keyPressed(){
 if(keyCode === ENTER){
